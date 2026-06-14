@@ -1,166 +1,536 @@
-<div class="timeline">
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emilia & Christoph – Hochzeit</title>
 
-  <div class="item">
-    <div class="time">08:00</div>
-    <div class="card">
-      <h3>Abholen von Emilia</h3>
-      <p>Start in den Hochzeitstag.</p>
-    </div>
-  </div>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 
-  <div class="item">
-    <div class="time">08:30</div>
-    <div class="card">
-      <h3>Treffen am Standesamt</h3>
-      <p>Ankommen, sammeln und gemeinsam auf die Trauung einstimmen.</p>
-    </div>
-  </div>
+  <style>
+    :root {
+      --cream: #f7efe7;
+      --silver: #d8d8dc;
+      --rose: #d9a0a6;
+      --rose-soft: #efc2c5;
+      --muted: #c7c3ca;
+      --card: rgba(5, 8, 20, 0.72);
+      --card-border: rgba(216, 216, 220, 0.22);
+    }
 
-  <div class="item">
-    <div class="time">09:00</div>
-    <div class="card highlight">
-      <h3>Standesamtliche Trauung</h3>
-      <p>Unsere Trauung im Standesamt.</p>
-      <span class="tag">bis ca. 09:30 Uhr</span>
-    </div>
-  </div>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  <div class="item">
-    <div class="time">10:15</div>
-    <div class="card">
-      <h3>Frühstück bei Nicole & Stephan</h3>
-      <p>Gemeinsames Frühstück nach der Trauung.</p>
-      <span class="tag">bis ca. 12:00 Uhr</span>
-    </div>
-  </div>
+    html {
+      scroll-behavior: smooth;
+    }
 
-  <div class="item">
-    <div class="time">12:00</div>
-    <div class="card">
-      <h3>Clostermanns Hof – Deko aufbauen</h3>
-      <p>Aufbau und Vorbereitung der Location.</p>
-      <span class="tag">Nicole, Margit, Stephan, Simon, Jan, Linda, Roland, Max, Hendrik</span>
-    </div>
-  </div>
+    body {
+      min-height: 100vh;
+      color: var(--cream);
+      font-family: "Montserrat", sans-serif;
+      line-height: 1.6;
+      background: #050814;
+    }
 
-  <div class="item">
-    <div class="time">13:00</div>
-    <div class="card">
-      <h3>Emilia – Friseur</h3>
-      <p>Getting Ready für die Braut.</p>
-      <span class="tag">plus Maria</span>
-    </div>
-  </div>
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(5, 8, 20, 0.08), rgba(5, 8, 20, 0.18)),
+        url("background.jpeg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: -2;
+    }
 
-  <div class="item">
-    <div class="time">14:00</div>
-    <div class="card">
-      <h3>Emilia – Schminken</h3>
-      <p>Make-up und weitere Vorbereitung.</p>
-      <span class="tag">plus Maria</span>
-    </div>
-  </div>
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at center, rgba(5, 8, 20, 0.05) 0%, rgba(5, 8, 20, 0.15) 48%, rgba(5, 8, 20, 0.38) 100%);
+      z-index: -1;
+      pointer-events: none;
+    }
 
-  <div class="item">
-    <div class="time">15:00</div>
-    <div class="card">
-      <h3>Emilia – Friseur 2</h3>
-      <p>Finales Styling der Braut.</p>
-      <span class="tag">plus Maria</span>
-    </div>
-  </div>
+    .page {
+      width: min(100%, 980px);
+      margin: 0 auto;
+      padding: 24px 14px 60px;
+    }
 
-  <div class="item">
-    <div class="time">16:45</div>
-    <div class="card highlight">
-      <h3>Treffen bei Nicole & Stephan</h3>
-      <p>Widersehen mit Christoph – erster Blick auf die fertige Braut.</p>
-    </div>
-  </div>
+    .panel {
+      min-height: calc(100vh - 48px);
+      border: 1px solid rgba(216, 216, 220, 0.42);
+      border-radius: 30px;
+      padding: 34px 18px;
+      background: rgba(3, 7, 18, 0.18);
+      backdrop-filter: blur(1px);
+      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
 
-  <div class="item">
-    <div class="time">17:30</div>
-    <div class="card">
-      <h3>Max & Maria fahren zum Clostermanns Hof</h3>
-      <p>Vorbereitung an der Location.</p>
-    </div>
-  </div>
+    .hero-content {
+      width: 100%;
+      max-width: 720px;
+      padding: 42px 18px;
+      border-radius: 28px;
+      background: rgba(5, 8, 20, 0.46);
+      border: 1px solid rgba(216, 216, 220, 0.18);
+      box-shadow: 0 22px 60px rgba(0, 0, 0, 0.30);
+    }
 
-  <div class="item">
-    <div class="time">18:30</div>
-    <div class="card highlight">
-      <h3>Ankunft des Brautpaares & Sektempfang</h3>
-      <p>Das Brautpaar kommt an der Location an. Anschließend beginnt der Sektempfang.</p>
-    </div>
-  </div>
+    .eyebrow {
+      font-family: "Great Vibes", cursive;
+      color: var(--rose);
+      font-size: clamp(2.3rem, 8vw, 4.4rem);
+      font-weight: 400;
+      margin-bottom: 12px;
+    }
 
-  <div class="item">
-    <div class="time">19:00</div>
-    <div class="card">
-      <h3>Fotos</h3>
-      <p>Fotos Hochzeitspaar alleine + Fotos mit den Familien und Freunden.</p>
-      <span class="tag">bis ca. 19:45 Uhr</span>
-    </div>
-  </div>
+    h1 {
+      font-family: "Playfair Display", serif;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      font-size: clamp(2.4rem, 10vw, 5.5rem);
+      line-height: 1.03;
+      color: #f8f0e9;
+      text-shadow: 0 4px 24px rgba(0,0,0,0.42);
+    }
 
-  <div class="item">
-    <div class="time">19:45</div>
-    <div class="card">
-      <h3>Kurze Ansprache & Buffet-Eröffnung</h3>
-      <p>Kurze Begrüßung und Eröffnung des Buffets.</p>
-      <span class="tag">ca. 19:45–20:00 Uhr</span>
-    </div>
-  </div>
+    .amp {
+      display: block;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2rem, 7vw, 4rem);
+      letter-spacing: 0;
+      color: var(--silver);
+      margin: 4px 0;
+    }
 
-  <div class="item">
-    <div class="time">20:00</div>
-    <div class="card">
-      <h3>Abendessen</h3>
-      <p>Gemeinsames Essen und gemütliches Beisammensein.</p>
-      <span class="tag">ca. 20:00–21:30 Uhr</span>
-    </div>
-  </div>
+    .date {
+      margin-top: 22px;
+      font-family: "Great Vibes", cursive;
+      font-size: clamp(2.3rem, 8vw, 4.2rem);
+      color: var(--rose);
+    }
 
-  <div class="item">
-    <div class="time">21:00</div>
-    <div class="card">
-      <h3>Reden nach dem Essen</h3>
-      <p>Beiträge und Reden nach dem Abendessen.</p>
-      <span class="tag">z. B. Maria & Max · ca. 21:00–21:30 Uhr</span>
-    </div>
-  </div>
+    .subtitle {
+      max-width: 560px;
+      margin: 18px auto 0;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
 
-  <div class="item">
-    <div class="time">21:30</div>
-    <div class="card highlight">
-      <h3>Tortenanschnitt</h3>
-      <p>Gemeinsames Anschneiden der Hochzeitstorte.</p>
-    </div>
-  </div>
+    .section {
+      margin-top: 28px;
+      border: 1px solid rgba(216, 216, 220, 0.38);
+      border-radius: 30px;
+      padding: 30px 16px;
+      background: rgba(3, 7, 18, 0.22);
+      backdrop-filter: blur(1px);
+      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
+      overflow: hidden;
+    }
 
-  <div class="item">
-    <div class="time">22:00</div>
-    <div class="card">
-      <h3>Erster Tanz</h3>
-      <p>Unser Hochzeitstanz und die Eröffnung der Tanzfläche.</p>
-      <span class="tag">ca. 22:00–22:30 Uhr</span>
-    </div>
-  </div>
+    .section-content {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 24px 14px;
+      border-radius: 28px;
+      background: rgba(5, 8, 20, 0.52);
+      border: 1px solid rgba(216, 216, 220, 0.14);
+    }
 
-  <div class="item">
-    <div class="time">22:30</div>
-    <div class="card">
-      <h3>Brautstrauß & Party</h3>
-      <p>Kurz nach der Tanzflächeneröffnung wird der Brautstrauß geworfen. Danach: Party, Musik und Open End.</p>
-    </div>
-  </div>
+    .section-title {
+      text-align: center;
+      margin-bottom: 30px;
+    }
 
-  <div class="item">
-    <div class="time">01:00</div>
-    <div class="card">
-      <h3>Wechsel in den Barbereich</h3>
-      <p>Ab ca. 01:00 Uhr wechseln wir aus dem großen Raum in den Barbereich.</p>
-    </div>
-  </div>
+    .section-title .script {
+      display: block;
+      font-family: "Great Vibes", cursive;
+      color: var(--rose);
+      font-size: clamp(2.4rem, 8vw, 3.9rem);
+      font-weight: 400;
+    }
 
-</div>
+    .section-title h2 {
+      font-family: "Playfair Display", serif;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--cream);
+      font-size: clamp(1.5rem, 5vw, 2.4rem);
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .item {
+      display: grid;
+      grid-template-columns: 98px 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .time {
+      padding-top: 18px;
+      text-align: right;
+      color: var(--rose-soft);
+      font-size: 1.42rem;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: 0.01em;
+      text-shadow: 0 2px 14px rgba(0,0,0,0.55);
+    }
+
+    .card {
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 18px 18px;
+      background: var(--card);
+      box-shadow: 0 16px 34px rgba(0,0,0,0.24);
+    }
+
+    .card.highlight {
+      border-color: rgba(217, 160, 166, 0.56);
+      background: rgba(41, 12, 24, 0.56);
+    }
+
+    .card h3 {
+      font-family: "Playfair Display", serif;
+      color: #fff8f0;
+      font-size: 1.24rem;
+      margin-bottom: 5px;
+      font-weight: 700;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(217,160,166,0.10);
+      border: 1px solid rgba(217,160,166,0.28);
+      color: #f0c9cc;
+      font-size: 0.82rem;
+      font-weight: 500;
+    }
+
+    .note-box {
+      margin: 24px auto 0;
+      border: 1px solid rgba(216, 216, 220, 0.18);
+      background: rgba(5, 8, 20, 0.58);
+      border-radius: 22px;
+      padding: 16px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      text-align: center;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 32px 12px 4px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .footer .names {
+      font-family: "Great Vibes", cursive;
+      color: var(--rose);
+      font-size: 2.5rem;
+      margin-bottom: 2px;
+    }
+
+    @media (max-width: 620px) {
+      .page {
+        padding: 12px 8px 40px;
+      }
+
+      .panel {
+        min-height: calc(100vh - 24px);
+        border-radius: 24px;
+        padding: 22px 10px;
+      }
+
+      .hero-content {
+        padding: 34px 12px;
+        background: rgba(5, 8, 20, 0.48);
+      }
+
+      .section {
+        border-radius: 24px;
+        padding: 20px 8px;
+      }
+
+      .section-content {
+        padding: 24px 10px;
+        background: rgba(5, 8, 20, 0.56);
+      }
+
+      .item {
+        grid-template-columns: 76px 1fr;
+        gap: 13px;
+      }
+
+      .time {
+        font-size: 1.16rem;
+        padding-top: 17px;
+      }
+
+      .card {
+        padding: 16px 14px;
+        border-radius: 22px;
+      }
+
+      .card h3 {
+        font-size: 1.07rem;
+      }
+
+      .card p {
+        font-size: 0.87rem;
+      }
+
+      .tag {
+        font-size: 0.78rem;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .item {
+        grid-template-columns: 68px 1fr;
+        gap: 11px;
+      }
+
+      .time {
+        font-size: 1.04rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <section class="panel">
+      <div class="hero-content">
+        <div class="eyebrow">Unser Hochzeitstag</div>
+        <h1>
+          Emilia
+          <span class="amp">&</span>
+          Christoph
+        </h1>
+        <div class="date">01. August 2026</div>
+        <p class="subtitle">
+          Ein Überblick über unseren gemeinsamen Tag – vom Standesamt bis zur Feier.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-content">
+        <div class="section-title">
+          <span class="script">Tagesablauf</span>
+          <h2>Unser Plan</h2>
+        </div>
+
+        <div class="timeline">
+
+          <div class="item">
+            <div class="time">08:00</div>
+            <div class="card">
+              <h3>Abholen von Emilia</h3>
+              <p>Start in den Hochzeitstag.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="time">08:30</div>
+            <div class="card">
+              <h3>Treffen am Standesamt</h3>
+              <p>Ankommen, sammeln und gemeinsam auf die Trauung einstimmen.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="time">09:00</div>
+            <div class="card highlight">
+              <h3>Standesamtliche Trauung</h3>
+              <p>Unsere Trauung im Standesamt.</p>
+              <span class="tag">bis ca. 09:30 Uhr</span>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="time">10:15</div>
+            <div class="card">
+              <h3>Frühstück bei Nicole & Stephan</h3>
+              <p>Gemeinsames Frühstück nach der Trauung.</p>
+              <span class="tag">bis ca. 12:00 Uhr</span>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="time">12:00</div>
+            <div class="card">
+              <h3>Clostermanns Hof – Deko aufbauen</h3>
+              <p>Aufbau und Vorbereitung der Location.</p>
+              <span class="tag">Nicole, Margit, Stephan, Simon, Jan, Linda, Roland, Max, Hendrik</span>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="time">13:00</div>
+            <div class="card">
+              <h3>Emilia – Friseur</h3>
+              <p>Getting Ready für die Braut.</p>
+              <span class="tag">plus Maria</span>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="time">14:00</div>
+            <div class="card">
+              <h3>Emilia – Schminken</h3>
+              <p>Make-up und weitere Vorbereitung.</p>
+              <span class="tag">plus Maria</span>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="time">15:00</div>
+            <div class="card">
+              <h3>Emilia – Friseur 2</h3>
+              <p>Finales Styling der Braut.</p>
+              <span class="tag">plus Maria</span>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="time">16:45</div>
+            <div class="card highlight">
+              <h3>Treffen bei Nicole & Stephan</h3>
+              <p>Widersehen mit Christoph – erster Blick auf die fertige Braut.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="time">17:30</div>
+            <div class="card">
+              <h3>Max & Maria fahren zum Clostermanns Hof</h3>
+              <p>Vorbereitung an der Location.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="time">18:30</div>
+            <div class="card highlight">
+              <h3>Ankunft des Brautpaares & Sektempfang</h3>
+              <p>Das Brautpaar kommt an der Location an. Anschließend beginnt der Sektempfang.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="time">19:00</div>
+            <div class="card">
+              <h3>Fotos</h3>
+              <p>Fotos Hochzeitspaar alleine + Fotos mit den Familien und Freunden.</p>
+              <span class="tag">bis ca. 19:45 Uhr</span>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="time">19:45</div>
+            <div class="card">
+              <h3>Kurze Ansprache & Buffet-Eröffnung</h3>
+              <p>Kurze Begrüßung und Eröffnung des Buffets.</p>
+              <span class="tag">ca. 19:45–20:00 Uhr</span>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="time">20:00</div>
+            <div class="card">
+              <h3>Abendessen</h3>
+              <p>Gemeinsames Essen und gemütliches Beisammensein.</p>
+              <span class="tag">ca. 20:00–21:30 Uhr</span>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="time">21:00</div>
+            <div class="card">
+              <h3>Reden nach dem Essen</h3>
+              <p>Beiträge und Reden nach dem Abendessen.</p>
+              <span class="tag">z. B. Maria & Max · ca. 21:00–21:30 Uhr</span>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="time">21:30</div>
+            <div class="card highlight">
+              <h3>Tortenanschnitt</h3>
+              <p>Gemeinsames Anschneiden der Hochzeitstorte.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="time">22:00</div>
+            <div class="card">
+              <h3>Erster Tanz</h3>
+              <p>Unser Hochzeitstanz und die Eröffnung der Tanzfläche.</p>
+              <span class="tag">ca. 22:00–22:30 Uhr</span>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="time">22:30</div>
+            <div class="card">
+              <h3>Brautstrauß & Party</h3>
+              <p>Kurz nach der Tanzflächeneröffnung wird der Brautstrauß geworfen. Danach: Party, Musik und Open End.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="time">01:00</div>
+            <div class="card">
+              <h3>Wechsel in den Barbereich</h3>
+              <p>Ab ca. 01:00 Uhr wechseln wir aus dem großen Raum in den Barbereich.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="note-box">
+          Zeiten können sich am Hochzeitstag leicht verschieben. Der Ablauf dient als Orientierung für alle Beteiligten.
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="names">Emilia & Christoph</div>
+      <div>01. August 2026</div>
+    </footer>
+
+  </main>
+</body>
+</html>
