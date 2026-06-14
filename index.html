@@ -11,15 +11,21 @@
 
   <style>
     :root {
-      --navy: #10172a;
-      --navy-light: #17213a;
+      --navy: #0e1323;
+      --navy-2: #161d33;
+      --navy-3: #1a2038;
       --cream: #f7efe7;
       --silver: #d8d8dc;
       --rose: #d9a0a6;
+      --rose-dark: #b87b84;
       --blush: #f1c7c8;
       --wine: #8e3348;
+      --wine-dark: #5d2230;
       --green: #8fae9c;
+      --green-dark: #5d7868;
       --text-muted: #c7c3ca;
+      --card-bg: rgba(5, 8, 20, 0.78);
+      --line: rgba(216, 216, 220, 0.35);
     }
 
     * {
@@ -31,10 +37,10 @@
     body {
       min-height: 100vh;
       background:
-        radial-gradient(circle at top left, rgba(142, 51, 72, 0.35), transparent 28%),
-        radial-gradient(circle at top right, rgba(217, 160, 166, 0.28), transparent 24%),
-        radial-gradient(circle at bottom left, rgba(143, 174, 156, 0.22), transparent 26%),
-        linear-gradient(160deg, #080c18 0%, #10172a 45%, #171b2f 100%);
+        radial-gradient(circle at top left, rgba(142, 51, 72, 0.26), transparent 24%),
+        radial-gradient(circle at top right, rgba(217, 160, 166, 0.16), transparent 20%),
+        radial-gradient(circle at bottom left, rgba(143, 174, 156, 0.14), transparent 24%),
+        linear-gradient(160deg, #070b17 0%, #10172a 45%, #171b2f 100%);
       color: var(--cream);
       font-family: "Montserrat", sans-serif;
       line-height: 1.6;
@@ -44,13 +50,160 @@
     .page {
       width: min(100%, 980px);
       margin: 0 auto;
-      padding: 28px 16px 60px;
+      padding: 24px 14px 60px;
       position: relative;
     }
 
+    /* =========================
+       FLORALE ELEMENTE
+    ========================= */
+
+    .flower-cluster {
+      position: absolute;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.95;
+    }
+
+    .flower-cluster.top-left {
+      top: -30px;
+      left: -18px;
+      width: 250px;
+      height: 220px;
+    }
+
+    .flower-cluster.top-right {
+      top: -15px;
+      right: -18px;
+      width: 270px;
+      height: 230px;
+      transform: scaleX(-1);
+    }
+
+    .flower-cluster.bottom-left {
+      bottom: -32px;
+      left: -24px;
+      width: 260px;
+      height: 230px;
+      transform: rotate(10deg);
+    }
+
+    .flower-cluster.bottom-right {
+      bottom: -32px;
+      right: -18px;
+      width: 280px;
+      height: 240px;
+      transform: scaleX(-1) rotate(4deg);
+    }
+
+    .flower {
+      position: absolute;
+      border-radius: 50%;
+      filter: drop-shadow(0 8px 14px rgba(0,0,0,0.18));
+    }
+
+    .flower .center {
+      position: absolute;
+      width: 22%;
+      height: 22%;
+      top: 39%;
+      left: 39%;
+      border-radius: 50%;
+      background: #efe5dc;
+      box-shadow:
+        0 0 0 3px rgba(255,255,255,0.08),
+        inset 0 0 0 2px rgba(0,0,0,0.06);
+      z-index: 3;
+    }
+
+    .petal {
+      position: absolute;
+      width: 42%;
+      height: 42%;
+      left: 29%;
+      top: 29%;
+      border-radius: 55% 55% 45% 45%;
+      transform-origin: center center;
+      z-index: 2;
+    }
+
+    .petal.p1 { transform: rotate(0deg) translateY(-58%); }
+    .petal.p2 { transform: rotate(72deg) translateY(-58%); }
+    .petal.p3 { transform: rotate(144deg) translateY(-58%); }
+    .petal.p4 { transform: rotate(216deg) translateY(-58%); }
+    .petal.p5 { transform: rotate(288deg) translateY(-58%); }
+
+    .flower.burgundy .petal {
+      background: linear-gradient(145deg, #ca7383 0%, #9a4156 55%, #642638 100%);
+    }
+
+    .flower.pink .petal {
+      background: linear-gradient(145deg, #f4d0d2 0%, #e4a7ae 55%, #b97280 100%);
+    }
+
+    .flower.navy .petal {
+      background: linear-gradient(145deg, #56638f 0%, #2f3d67 55%, #1d2540 100%);
+    }
+
+    .leaf {
+      position: absolute;
+      width: 38px;
+      height: 20px;
+      border-radius: 100% 0 100% 0;
+      background: linear-gradient(135deg, #b7d0c0 0%, #7a9a89 55%, #557263 100%);
+      transform: rotate(-20deg);
+      opacity: 0.92;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12);
+    }
+
+    .twig {
+      position: absolute;
+      width: 90px;
+      height: 2px;
+      background: rgba(220, 210, 205, 0.18);
+      transform-origin: left center;
+    }
+
+    /* Positionierung einzelner Blumen / Blätter */
+    .top-left .f1 { width: 115px; height: 115px; left: 0; top: 0; }
+    .top-left .f2 { width: 84px; height: 84px; left: 98px; top: 10px; }
+    .top-left .f3 { width: 92px; height: 92px; left: 28px; top: 95px; }
+    .top-left .l1 { left: 140px; top: 76px; transform: rotate(18deg); }
+    .top-left .l2 { left: 116px; top: 110px; transform: rotate(42deg); }
+    .top-left .l3 { left: 78px; top: 160px; transform: rotate(-22deg); }
+    .top-left .t1 { left: 98px; top: 114px; transform: rotate(24deg); }
+
+    .top-right .f1 { width: 112px; height: 112px; left: 14px; top: 6px; }
+    .top-right .f2 { width: 80px; height: 80px; left: 112px; top: 22px; }
+    .top-right .f3 { width: 98px; height: 98px; left: 46px; top: 100px; }
+    .top-right .l1 { left: 125px; top: 84px; transform: rotate(10deg); }
+    .top-right .l2 { left: 92px; top: 130px; transform: rotate(50deg); }
+    .top-right .l3 { left: 56px; top: 150px; transform: rotate(-10deg); }
+    .top-right .t1 { left: 92px; top: 118px; transform: rotate(12deg); }
+
+    .bottom-left .f1 { width: 122px; height: 122px; left: 8px; top: 78px; }
+    .bottom-left .f2 { width: 86px; height: 86px; left: 118px; top: 92px; }
+    .bottom-left .f3 { width: 76px; height: 76px; left: 142px; top: 18px; }
+    .bottom-left .l1 { left: 96px; top: 62px; transform: rotate(22deg); }
+    .bottom-left .l2 { left: 154px; top: 62px; transform: rotate(-26deg); }
+    .bottom-left .l3 { left: 168px; top: 130px; transform: rotate(28deg); }
+    .bottom-left .t1 { left: 110px; top: 92px; transform: rotate(-20deg); }
+
+    .bottom-right .f1 { width: 118px; height: 118px; left: 10px; top: 88px; }
+    .bottom-right .f2 { width: 84px; height: 84px; left: 130px; top: 100px; }
+    .bottom-right .f3 { width: 76px; height: 76px; left: 150px; top: 24px; }
+    .bottom-right .l1 { left: 98px; top: 68px; transform: rotate(12deg); }
+    .bottom-right .l2 { left: 158px; top: 70px; transform: rotate(-18deg); }
+    .bottom-right .l3 { left: 182px; top: 132px; transform: rotate(36deg); }
+    .bottom-right .t1 { left: 118px; top: 104px; transform: rotate(-10deg); }
+
+    /* =========================
+       HERO
+    ========================= */
+
     .hero {
       position: relative;
-      min-height: 88vh;
+      min-height: 86vh;
       border: 1px solid rgba(216, 216, 220, 0.45);
       border-radius: 28px;
       padding: 42px 22px;
@@ -60,67 +213,9 @@
       text-align: center;
       overflow: hidden;
       background:
-        linear-gradient(rgba(16, 23, 42, 0.74), rgba(16, 23, 42, 0.82)),
+        linear-gradient(rgba(14, 19, 35, 0.70), rgba(14, 19, 35, 0.84)),
         radial-gradient(circle at 50% 30%, rgba(255,255,255,0.08), transparent 35%);
       box-shadow: 0 26px 70px rgba(0, 0, 0, 0.45);
-    }
-
-    .hero::before,
-    .hero::after {
-      content: "";
-      position: absolute;
-      width: 360px;
-      height: 360px;
-      background:
-        radial-gradient(circle at 32% 30%, #b64e63 0 8%, transparent 9%),
-        radial-gradient(circle at 48% 18%, #e3aeb1 0 10%, transparent 11%),
-        radial-gradient(circle at 66% 34%, #772e45 0 12%, transparent 13%),
-        radial-gradient(circle at 28% 58%, #f0c6c8 0 10%, transparent 11%),
-        radial-gradient(circle at 57% 64%, #263357 0 13%, transparent 14%),
-        radial-gradient(ellipse at 72% 70%, #8fae9c 0 9%, transparent 10%),
-        radial-gradient(ellipse at 20% 78%, #668677 0 8%, transparent 9%);
-      opacity: 0.88;
-      filter: saturate(1.05);
-      z-index: 0;
-    }
-
-    .hero::before {
-      top: -90px;
-      left: -100px;
-      transform: rotate(-12deg);
-    }
-
-    .hero::after {
-      right: -105px;
-      bottom: -100px;
-      transform: rotate(172deg);
-    }
-
-    .floral-corner {
-      position: absolute;
-      width: 280px;
-      height: 280px;
-      pointer-events: none;
-      opacity: 0.72;
-      z-index: 0;
-      background:
-        radial-gradient(circle at 70% 24%, #a64058 0 9%, transparent 10%),
-        radial-gradient(circle at 56% 42%, #eabec0 0 10%, transparent 11%),
-        radial-gradient(circle at 82% 54%, #29304d 0 14%, transparent 15%),
-        radial-gradient(ellipse at 35% 65%, #86a895 0 9%, transparent 10%),
-        radial-gradient(ellipse at 47% 76%, #59786e 0 8%, transparent 9%);
-    }
-
-    .floral-corner.top-right {
-      top: -70px;
-      right: -75px;
-      transform: rotate(18deg);
-    }
-
-    .floral-corner.bottom-left {
-      bottom: -70px;
-      left: -75px;
-      transform: rotate(198deg);
     }
 
     .hero-content {
@@ -171,13 +266,17 @@
       font-size: 0.98rem;
     }
 
+    /* =========================
+       SEKTIONEN
+    ========================= */
+
     .section {
       margin-top: 34px;
       border: 1px solid rgba(216, 216, 220, 0.28);
-      background: rgba(10, 15, 31, 0.76);
+      background: rgba(10, 15, 31, 0.82);
       backdrop-filter: blur(14px);
       border-radius: 26px;
-      padding: 26px 18px;
+      padding: 30px 18px;
       box-shadow: 0 20px 50px rgba(0,0,0,0.28);
       position: relative;
       overflow: hidden;
@@ -188,25 +287,25 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(circle at top right, rgba(217,160,166,0.12), transparent 28%),
-        radial-gradient(circle at bottom left, rgba(143,174,156,0.10), transparent 26%);
+        radial-gradient(circle at top right, rgba(217,160,166,0.10), transparent 28%),
+        radial-gradient(circle at bottom left, rgba(143,174,156,0.08), transparent 26%);
       pointer-events: none;
     }
 
     .section-inner {
       position: relative;
-      z-index: 1;
+      z-index: 2;
     }
 
     .section-title {
       text-align: center;
-      margin-bottom: 24px;
+      margin-bottom: 26px;
     }
 
     .section-title .script {
       font-family: "Great Vibes", cursive;
       color: var(--rose);
-      font-size: clamp(2rem, 7vw, 3.4rem);
+      font-size: clamp(2.2rem, 7vw, 3.6rem);
       font-weight: 400;
       display: block;
     }
@@ -215,15 +314,19 @@
       font-family: "Playfair Display", serif;
       text-transform: uppercase;
       letter-spacing: 0.14em;
-      font-size: clamp(1.35rem, 5vw, 2.25rem);
+      font-size: clamp(1.4rem, 5vw, 2.35rem);
       color: var(--cream);
     }
 
+    /* =========================
+       TIMELINE
+    ========================= */
+
     .timeline {
       position: relative;
-      max-width: 760px;
+      max-width: 780px;
       margin: 0 auto;
-      padding: 4px 0 0;
+      padding: 8px 0 0;
     }
 
     .timeline::before {
@@ -231,17 +334,23 @@
       position: absolute;
       top: 4px;
       bottom: 4px;
-      left: 96px;
-      width: 1px;
-      background: linear-gradient(180deg, transparent, rgba(216,216,220,0.75), transparent);
+      left: 112px;
+      width: 2px;
+      background: linear-gradient(
+        180deg,
+        transparent,
+        rgba(216,216,220,0.7),
+        rgba(217,160,166,0.45),
+        transparent
+      );
     }
 
     .item {
       display: grid;
-      grid-template-columns: 78px 1fr;
-      gap: 22px;
+      grid-template-columns: 96px 1fr;
+      gap: 26px;
       position: relative;
-      padding: 0 0 22px;
+      padding: 0 0 24px;
     }
 
     .item:last-child {
@@ -252,68 +361,72 @@
       text-align: right;
       font-weight: 700;
       color: var(--rose);
-      font-size: 0.95rem;
-      padding-top: 14px;
-      letter-spacing: 0.02em;
+      font-size: 1.35rem;
+      line-height: 1;
+      padding-top: 18px;
+      letter-spacing: 0.01em;
+      text-shadow: 0 0 10px rgba(0,0,0,0.25);
     }
 
     .card {
       position: relative;
-      border: 1px solid rgba(216,216,220,0.24);
-      border-radius: 20px;
-      padding: 15px 16px;
-      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(216,216,220,0.18);
+      border-radius: 22px;
+      padding: 17px 18px;
+      background: rgba(3, 6, 16, 0.76);
       box-shadow: 0 10px 24px rgba(0,0,0,0.18);
     }
 
     .card::before {
       content: "";
       position: absolute;
-      top: 20px;
-      left: -33px;
-      width: 15px;
-      height: 15px;
+      top: 22px;
+      left: -42px;
+      width: 18px;
+      height: 18px;
       border-radius: 50%;
-      background: var(--rose);
-      border: 3px solid var(--navy);
-      box-shadow: 0 0 0 1px rgba(216,216,220,0.55);
+      background: #8c1320;
+      border: 4px solid rgba(205, 210, 224, 0.55);
+      box-shadow:
+        0 0 0 5px rgba(62, 69, 95, 0.32),
+        0 0 0 1px rgba(255,255,255,0.18);
     }
 
     .card h3 {
       font-family: "Playfair Display", serif;
       color: #fff8f0;
-      font-size: 1.15rem;
-      margin-bottom: 3px;
+      font-size: 1.2rem;
+      margin-bottom: 4px;
       font-weight: 700;
     }
 
     .card p {
       color: var(--text-muted);
-      font-size: 0.92rem;
+      font-size: 0.94rem;
     }
 
     .tag {
       display: inline-block;
-      margin-top: 9px;
-      padding: 5px 10px;
+      margin-top: 10px;
+      padding: 6px 12px;
       border-radius: 999px;
-      background: rgba(217,160,166,0.12);
-      border: 1px solid rgba(217,160,166,0.28);
+      background: rgba(217,160,166,0.08);
+      border: 1px solid rgba(217,160,166,0.22);
       color: #f0c9cc;
-      font-size: 0.78rem;
+      font-size: 0.82rem;
       font-weight: 500;
     }
 
     .highlight {
-      border-color: rgba(217,160,166,0.65);
-      background: rgba(217,160,166,0.10);
+      border-color: rgba(217,160,166,0.52);
+      background: rgba(217,160,166,0.07);
     }
 
     .note-box {
-      margin: 22px auto 0;
+      margin: 24px auto 0;
       max-width: 760px;
-      border: 1px solid rgba(143,174,156,0.32);
-      background: rgba(143,174,156,0.09);
+      border: 1px solid rgba(143,174,156,0.26);
+      background: rgba(143,174,156,0.08);
       border-radius: 20px;
       padding: 16px;
       color: var(--text-muted);
@@ -335,51 +448,87 @@
       margin-bottom: 2px;
     }
 
+    @media (max-width: 720px) {
+      .flower-cluster.top-left,
+      .flower-cluster.top-right {
+        width: 190px;
+        height: 170px;
+      }
+
+      .flower-cluster.bottom-left,
+      .flower-cluster.bottom-right {
+        width: 200px;
+        height: 180px;
+      }
+    }
+
     @media (max-width: 620px) {
       .page {
         padding: 14px 10px 40px;
       }
 
       .hero {
-        min-height: 82vh;
+        min-height: 80vh;
         border-radius: 22px;
         padding: 36px 16px;
       }
 
-      .hero::before,
-      .hero::after {
-        width: 265px;
-        height: 265px;
+      .section {
+        padding: 26px 14px;
       }
 
       .timeline::before {
-        left: 72px;
+        left: 82px;
       }
 
       .item {
-        grid-template-columns: 58px 1fr;
-        gap: 20px;
+        grid-template-columns: 68px 1fr;
+        gap: 18px;
       }
 
       .time {
-        font-size: 0.78rem;
-        padding-top: 15px;
+        font-size: 1.08rem;
+        padding-top: 16px;
       }
 
       .card {
-        padding: 14px 14px;
+        padding: 15px 14px;
       }
 
       .card::before {
-        left: -29px;
+        left: -31px;
+        width: 16px;
+        height: 16px;
       }
 
       .card h3 {
-        font-size: 1.02rem;
+        font-size: 1.05rem;
       }
 
       .card p {
-        font-size: 0.86rem;
+        font-size: 0.87rem;
+      }
+
+      .tag {
+        font-size: 0.78rem;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .flower-cluster.top-left,
+      .flower-cluster.top-right {
+        width: 150px;
+        height: 140px;
+      }
+
+      .flower-cluster.bottom-left,
+      .flower-cluster.bottom-right {
+        width: 155px;
+        height: 145px;
+      }
+
+      .time {
+        font-size: 1rem;
       }
     }
   </style>
@@ -388,8 +537,73 @@
 <body>
   <main class="page">
     <section class="hero">
-      <div class="floral-corner top-right"></div>
-      <div class="floral-corner bottom-left"></div>
+      <div class="flower-cluster top-left">
+        <div class="flower burgundy f1">
+          <span class="petal p1"></span><span class="petal p2"></span><span class="petal p3"></span><span class="petal p4"></span><span class="petal p5"></span>
+          <span class="center"></span>
+        </div>
+        <div class="flower pink f2">
+          <span class="petal p1"></span><span class="petal p2"></span><span class="petal p3"></span><span class="petal p4"></span><span class="petal p5"></span>
+          <span class="center"></span>
+        </div>
+        <div class="flower navy f3">
+          <span class="petal p1"></span><span class="petal p2"></span><span class="petal p3"></span><span class="petal p4"></span><span class="petal p5"></span>
+          <span class="center"></span>
+        </div>
+        <div class="leaf l1"></div><div class="leaf l2"></div><div class="leaf l3"></div>
+        <div class="twig t1"></div>
+      </div>
+
+      <div class="flower-cluster top-right">
+        <div class="flower burgundy f1">
+          <span class="petal p1"></span><span class="petal p2"></span><span class="petal p3"></span><span class="petal p4"></span><span class="petal p5"></span>
+          <span class="center"></span>
+        </div>
+        <div class="flower pink f2">
+          <span class="petal p1"></span><span class="petal p2"></span><span class="petal p3"></span><span class="petal p4"></span><span class="petal p5"></span>
+          <span class="center"></span>
+        </div>
+        <div class="flower navy f3">
+          <span class="petal p1"></span><span class="petal p2"></span><span class="petal p3"></span><span class="petal p4"></span><span class="petal p5"></span>
+          <span class="center"></span>
+        </div>
+        <div class="leaf l1"></div><div class="leaf l2"></div><div class="leaf l3"></div>
+        <div class="twig t1"></div>
+      </div>
+
+      <div class="flower-cluster bottom-left">
+        <div class="flower navy f1">
+          <span class="petal p1"></span><span class="petal p2"></span><span class="petal p3"></span><span class="petal p4"></span><span class="petal p5"></span>
+          <span class="center"></span>
+        </div>
+        <div class="flower pink f2">
+          <span class="petal p1"></span><span class="petal p2"></span><span class="petal p3"></span><span class="petal p4"></span><span class="petal p5"></span>
+          <span class="center"></span>
+        </div>
+        <div class="flower burgundy f3">
+          <span class="petal p1"></span><span class="petal p2"></span><span class="petal p3"></span><span class="petal p4"></span><span class="petal p5"></span>
+          <span class="center"></span>
+        </div>
+        <div class="leaf l1"></div><div class="leaf l2"></div><div class="leaf l3"></div>
+        <div class="twig t1"></div>
+      </div>
+
+      <div class="flower-cluster bottom-right">
+        <div class="flower burgundy f1">
+          <span class="petal p1"></span><span class="petal p2"></span><span class="petal p3"></span><span class="petal p4"></span><span class="petal p5"></span>
+          <span class="center"></span>
+        </div>
+        <div class="flower pink f2">
+          <span class="petal p1"></span><span class="petal p2"></span><span class="petal p3"></span><span class="petal p4"></span><span class="petal p5"></span>
+          <span class="center"></span>
+        </div>
+        <div class="flower navy f3">
+          <span class="petal p1"></span><span class="petal p2"></span><span class="petal p3"></span><span class="petal p4"></span><span class="petal p5"></span>
+          <span class="center"></span>
+        </div>
+        <div class="leaf l1"></div><div class="leaf l2"></div><div class="leaf l3"></div>
+        <div class="twig t1"></div>
+      </div>
 
       <div class="hero-content">
         <div class="eyebrow">Unser Hochzeitstag</div>
@@ -406,6 +620,40 @@
     </section>
 
     <section class="section">
+      <div class="flower-cluster top-left">
+        <div class="flower burgundy f1">
+          <span class="petal p1"></span><span class="petal p2"></span><span class="petal p3"></span><span class="petal p4"></span><span class="petal p5"></span>
+          <span class="center"></span>
+        </div>
+        <div class="flower pink f2">
+          <span class="petal p1"></span><span class="petal p2"></span><span class="petal p3"></span><span class="petal p4"></span><span class="petal p5"></span>
+          <span class="center"></span>
+        </div>
+        <div class="flower navy f3">
+          <span class="petal p1"></span><span class="petal p2"></span><span class="petal p3"></span><span class="petal p4"></span><span class="petal p5"></span>
+          <span class="center"></span>
+        </div>
+        <div class="leaf l1"></div><div class="leaf l2"></div><div class="leaf l3"></div>
+        <div class="twig t1"></div>
+      </div>
+
+      <div class="flower-cluster bottom-right">
+        <div class="flower burgundy f1">
+          <span class="petal p1"></span><span class="petal p2"></span><span class="petal p3"></span><span class="petal p4"></span><span class="petal p5"></span>
+          <span class="center"></span>
+        </div>
+        <div class="flower pink f2">
+          <span class="petal p1"></span><span class="petal p2"></span><span class="petal p3"></span><span class="petal p4"></span><span class="petal p5"></span>
+          <span class="center"></span>
+        </div>
+        <div class="flower navy f3">
+          <span class="petal p1"></span><span class="petal p2"></span><span class="petal p3"></span><span class="petal p4"></span><span class="petal p5"></span>
+          <span class="center"></span>
+        </div>
+        <div class="leaf l1"></div><div class="leaf l2"></div><div class="leaf l3"></div>
+        <div class="twig t1"></div>
+      </div>
+
       <div class="section-inner">
         <div class="section-title">
           <span class="script">Tagesablauf</span>
@@ -413,7 +661,6 @@
         </div>
 
         <div class="timeline">
-
           <div class="item">
             <div class="time">08:30</div>
             <div class="card">
@@ -568,7 +815,6 @@
               <p>Ab ca. 01:00 Uhr wechseln wir aus dem großen Raum in den Barbereich.</p>
             </div>
           </div>
-
         </div>
 
         <div class="note-box">
