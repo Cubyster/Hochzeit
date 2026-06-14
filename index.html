@@ -1,13 +1,586 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unsere Hochzeit</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emilia & Christoph – Hochzeit</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy: #10172a;
+      --navy-light: #17213a;
+      --cream: #f7efe7;
+      --silver: #d8d8dc;
+      --rose: #d9a0a6;
+      --blush: #f1c7c8;
+      --wine: #8e3348;
+      --green: #8fae9c;
+      --text-muted: #c7c3ca;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(142, 51, 72, 0.35), transparent 28%),
+        radial-gradient(circle at top right, rgba(217, 160, 166, 0.28), transparent 24%),
+        radial-gradient(circle at bottom left, rgba(143, 174, 156, 0.22), transparent 26%),
+        linear-gradient(160deg, #080c18 0%, #10172a 45%, #171b2f 100%);
+      color: var(--cream);
+      font-family: "Montserrat", sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .page {
+      width: min(100%, 980px);
+      margin: 0 auto;
+      padding: 28px 16px 60px;
+      position: relative;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 88vh;
+      border: 1px solid rgba(216, 216, 220, 0.45);
+      border-radius: 28px;
+      padding: 42px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(16, 23, 42, 0.74), rgba(16, 23, 42, 0.82)),
+        radial-gradient(circle at 50% 30%, rgba(255,255,255,0.08), transparent 35%);
+      box-shadow: 0 26px 70px rgba(0, 0, 0, 0.45);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      background:
+        radial-gradient(circle at 32% 30%, #b64e63 0 8%, transparent 9%),
+        radial-gradient(circle at 48% 18%, #e3aeb1 0 10%, transparent 11%),
+        radial-gradient(circle at 66% 34%, #772e45 0 12%, transparent 13%),
+        radial-gradient(circle at 28% 58%, #f0c6c8 0 10%, transparent 11%),
+        radial-gradient(circle at 57% 64%, #263357 0 13%, transparent 14%),
+        radial-gradient(ellipse at 72% 70%, #8fae9c 0 9%, transparent 10%),
+        radial-gradient(ellipse at 20% 78%, #668677 0 8%, transparent 9%);
+      opacity: 0.88;
+      filter: saturate(1.05);
+      z-index: 0;
+    }
+
+    .hero::before {
+      top: -90px;
+      left: -100px;
+      transform: rotate(-12deg);
+    }
+
+    .hero::after {
+      right: -105px;
+      bottom: -100px;
+      transform: rotate(172deg);
+    }
+
+    .floral-corner {
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      pointer-events: none;
+      opacity: 0.72;
+      z-index: 0;
+      background:
+        radial-gradient(circle at 70% 24%, #a64058 0 9%, transparent 10%),
+        radial-gradient(circle at 56% 42%, #eabec0 0 10%, transparent 11%),
+        radial-gradient(circle at 82% 54%, #29304d 0 14%, transparent 15%),
+        radial-gradient(ellipse at 35% 65%, #86a895 0 9%, transparent 10%),
+        radial-gradient(ellipse at 47% 76%, #59786e 0 8%, transparent 9%);
+    }
+
+    .floral-corner.top-right {
+      top: -70px;
+      right: -75px;
+      transform: rotate(18deg);
+    }
+
+    .floral-corner.bottom-left {
+      bottom: -70px;
+      left: -75px;
+      transform: rotate(198deg);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      padding: 28px 8px;
+    }
+
+    .eyebrow {
+      font-family: "Great Vibes", cursive;
+      font-size: clamp(2rem, 8vw, 4.1rem);
+      color: var(--rose);
+      margin-bottom: 14px;
+      font-weight: 400;
+    }
+
+    h1 {
+      font-family: "Playfair Display", serif;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: clamp(2.45rem, 10vw, 5.2rem);
+      line-height: 1.03;
+      color: #f4eee8;
+      text-shadow: 0 3px 24px rgba(0,0,0,0.35);
+    }
+
+    .amp {
+      display: block;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2rem, 7vw, 4rem);
+      letter-spacing: 0;
+      margin: 5px 0;
+      color: var(--silver);
+    }
+
+    .date {
+      margin-top: 22px;
+      font-family: "Great Vibes", cursive;
+      font-size: clamp(2.2rem, 8vw, 4rem);
+      color: var(--rose);
+    }
+
+    .subtitle {
+      margin: 18px auto 0;
+      color: var(--text-muted);
+      max-width: 560px;
+      font-size: 0.98rem;
+    }
+
+    .section {
+      margin-top: 34px;
+      border: 1px solid rgba(216, 216, 220, 0.28);
+      background: rgba(10, 15, 31, 0.76);
+      backdrop-filter: blur(14px);
+      border-radius: 26px;
+      padding: 26px 18px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.28);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top right, rgba(217,160,166,0.12), transparent 28%),
+        radial-gradient(circle at bottom left, rgba(143,174,156,0.10), transparent 26%);
+      pointer-events: none;
+    }
+
+    .section-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .section-title .script {
+      font-family: "Great Vibes", cursive;
+      color: var(--rose);
+      font-size: clamp(2rem, 7vw, 3.4rem);
+      font-weight: 400;
+      display: block;
+    }
+
+    .section-title h2 {
+      font-family: "Playfair Display", serif;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: clamp(1.35rem, 5vw, 2.25rem);
+      color: var(--cream);
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 4px 0 0;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 4px;
+      bottom: 4px;
+      left: 96px;
+      width: 1px;
+      background: linear-gradient(180deg, transparent, rgba(216,216,220,0.75), transparent);
+    }
+
+    .item {
+      display: grid;
+      grid-template-columns: 78px 1fr;
+      gap: 22px;
+      position: relative;
+      padding: 0 0 22px;
+    }
+
+    .item:last-child {
+      padding-bottom: 0;
+    }
+
+    .time {
+      text-align: right;
+      font-weight: 700;
+      color: var(--rose);
+      font-size: 0.95rem;
+      padding-top: 14px;
+      letter-spacing: 0.02em;
+    }
+
+    .card {
+      position: relative;
+      border: 1px solid rgba(216,216,220,0.24);
+      border-radius: 20px;
+      padding: 15px 16px;
+      background: rgba(255,255,255,0.045);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 20px;
+      left: -33px;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: var(--rose);
+      border: 3px solid var(--navy);
+      box-shadow: 0 0 0 1px rgba(216,216,220,0.55);
+    }
+
+    .card h3 {
+      font-family: "Playfair Display", serif;
+      color: #fff8f0;
+      font-size: 1.15rem;
+      margin-bottom: 3px;
+      font-weight: 700;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-top: 9px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(217,160,166,0.12);
+      border: 1px solid rgba(217,160,166,0.28);
+      color: #f0c9cc;
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+
+    .highlight {
+      border-color: rgba(217,160,166,0.65);
+      background: rgba(217,160,166,0.10);
+    }
+
+    .note-box {
+      margin: 22px auto 0;
+      max-width: 760px;
+      border: 1px solid rgba(143,174,156,0.32);
+      background: rgba(143,174,156,0.09);
+      border-radius: 20px;
+      padding: 16px;
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      text-align: center;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 32px 12px 4px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .footer .names {
+      font-family: "Great Vibes", cursive;
+      color: var(--rose);
+      font-size: 2.3rem;
+      margin-bottom: 2px;
+    }
+
+    @media (max-width: 620px) {
+      .page {
+        padding: 14px 10px 40px;
+      }
+
+      .hero {
+        min-height: 82vh;
+        border-radius: 22px;
+        padding: 36px 16px;
+      }
+
+      .hero::before,
+      .hero::after {
+        width: 265px;
+        height: 265px;
+      }
+
+      .timeline::before {
+        left: 72px;
+      }
+
+      .item {
+        grid-template-columns: 58px 1fr;
+        gap: 20px;
+      }
+
+      .time {
+        font-size: 0.78rem;
+        padding-top: 15px;
+      }
+
+      .card {
+        padding: 14px 14px;
+      }
+
+      .card::before {
+        left: -29px;
+      }
+
+      .card h3 {
+        font-size: 1.02rem;
+      }
+
+      .card p {
+        font-size: 0.86rem;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <h1>Willkommen zu unserer Hochzeit</h1>
-    <p>01.08.2026</p>
-    <p>Diese Seite befindet sich noch im Aufbau.</p>
+  <main class="page">
+    <section class="hero">
+      <div class="floral-corner top-right"></div>
+      <div class="floral-corner bottom-left"></div>
+
+      <div class="hero-content">
+        <div class="eyebrow">Unser Hochzeitstag</div>
+        <h1>
+          Emilia
+          <span class="amp">&</span>
+          Christoph
+        </h1>
+        <div class="date">01. August 2026</div>
+        <p class="subtitle">
+          Ein Überblick über unseren gemeinsamen Tag – vom Standesamt bis zur Feier.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-inner">
+        <div class="section-title">
+          <span class="script">Tagesablauf</span>
+          <h2>Unser Plan</h2>
+        </div>
+
+        <div class="timeline">
+
+          <div class="item">
+            <div class="time">08:30</div>
+            <div class="card">
+              <h3>Treffen am Standesamt</h3>
+              <p>Ankommen, sammeln und gemeinsam auf die Trauung einstimmen.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="time">09:00</div>
+            <div class="card highlight">
+              <h3>Standesamtliche Trauung</h3>
+              <p>Unsere Trauung im Standesamt.</p>
+              <span class="tag">bis ca. 09:30 Uhr</span>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="time">10:15</div>
+            <div class="card">
+              <h3>Frühstück bei Nicole & Stefan</h3>
+              <p>Gemeinsames Frühstück nach der Trauung.</p>
+              <span class="tag">bis ca. 12:00 Uhr</span>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="time">12:00</div>
+            <div class="card">
+              <h3>Klostermanshof – Deko aufbauen</h3>
+              <p>Aufbau und Vorbereitung der Location.</p>
+              <span class="tag">Nicole, Mama, Simon, Jan, Linda, Roland, Max, Hendrik</span>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="time">13:00</div>
+            <div class="card">
+              <h3>Emilia – Friseur</h3>
+              <p>Getting Ready für die Braut.</p>
+              <span class="tag">plus Maria</span>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="time">14:00</div>
+            <div class="card">
+              <h3>Emilia – Schminken</h3>
+              <p>Make-up und weitere Vorbereitung.</p>
+              <span class="tag">plus Maria</span>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="time">15:00</div>
+            <div class="card">
+              <h3>Emilia – Friseur 2</h3>
+              <p>Finales Styling der Braut.</p>
+              <span class="tag">plus Maria</span>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="time">16:45</div>
+            <div class="card">
+              <h3>Treffen bei Christoph</h3>
+              <p>Gemeinsames Sammeln vor dem weiteren Ablauf.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="time">17:30</div>
+            <div class="card">
+              <h3>Max & Maria fahren zum Klostermanshof</h3>
+              <p>Vorbereitung an der Location.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="time">18:30</div>
+            <div class="card highlight">
+              <h3>Ankunft des Brautpaares</h3>
+              <p>Das Brautpaar kommt an der Location an.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="time">19:00</div>
+            <div class="card">
+              <h3>Fotos</h3>
+              <p>Gemeinsame Fotos und Erinnerungen festhalten.</p>
+              <span class="tag">bis ca. 19:45 Uhr</span>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="time">19:45</div>
+            <div class="card">
+              <h3>Kurze Ansprache & Buffet-Eröffnung</h3>
+              <p>Kurze Begrüßung und Eröffnung des Buffets.</p>
+              <span class="tag">ca. 19:45–20:00 Uhr</span>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="time">20:00</div>
+            <div class="card">
+              <h3>Abendessen</h3>
+              <p>Gemeinsames Essen und gemütliches Beisammensein.</p>
+              <span class="tag">ca. 20:00–21:30 Uhr</span>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="time">21:00</div>
+            <div class="card">
+              <h3>Reden nach dem Essen</h3>
+              <p>Beiträge und Reden nach dem Abendessen.</p>
+              <span class="tag">z. B. Maria & Max · ca. 21:00–21:30 Uhr</span>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="time">21:30</div>
+            <div class="card highlight">
+              <h3>Tortenanschnitt</h3>
+              <p>Gemeinsames Anschneiden der Hochzeitstorte.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="time">22:00</div>
+            <div class="card">
+              <h3>Erster Tanz</h3>
+              <p>Unser Hochzeitstanz und die Eröffnung der Tanzfläche.</p>
+              <span class="tag">ca. 22:00–22:30 Uhr</span>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="time">22:30</div>
+            <div class="card">
+              <h3>Brautstrauß & Party</h3>
+              <p>Kurz nach der Tanzflächeneröffnung wird der Brautstrauß geworfen. Danach: Party, Musik und Open End.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="time">01:00</div>
+            <div class="card">
+              <h3>Wechsel in den Barbereich</h3>
+              <p>Ab ca. 01:00 Uhr wechseln wir aus dem großen Raum in den Barbereich.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="note-box">
+          Zeiten können sich am Hochzeitstag leicht verschieben. Der Ablauf dient als Orientierung für alle Beteiligten.
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="names">Emilia & Christoph</div>
+      <div>01. August 2026</div>
+    </footer>
+  </main>
 </body>
 </html>
